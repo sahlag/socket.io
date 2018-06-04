@@ -5,7 +5,12 @@ let socket = io();
 let formConnection = document.getElementById('form-connection');
 let formMessage = document.getElementById('form-message');
 let inputName = document.getElementById('name');
+
 let inputMessage = document.getElementById('message');
+let sectionConnection = document.getElementById('sectionConnection');
+let sectionMessage = document.getElementById('sectionMessage');
+let divMessage = document.getElementById('messages');
+
 
 // Gestion de l'authentification.
 formConnection.addEventListener('submit', (event)=>{
@@ -15,7 +20,12 @@ formConnection.addEventListener('submit', (event)=>{
 
 // Emession de l'événement vers le serveur
   socket.emit('newUser', username);
-})
+
+  
+    // Gestion de laffichage
+    sectionConnection.style.display ='none';
+    sectionMessage.style.display ='block';
+});
 
 // Gestion de message.
 formMessage.addEventListener('submit', (event)=>{
@@ -25,10 +35,18 @@ formMessage.addEventListener('submit', (event)=>{
   
  // Emession de l'événement vers le serveur
     socket.emit('newMessage', message);
-  })
+
+  });
 
   socket.on('new-message',(username, message)=>{
       console.log(`Réception d'un message`);
-      console.log(`${ username } : ${ message }`);
+      
+
+      //création d'un paragraphe
+      const monParagraphe = document.createElement('p');
+      monParagraphe.innerText = `${ username } : ${ message }`;
+     // Ajouter le paragraphe à la div portant l'id 'messages'
+      divMessage.appendChild(monParagraphe);
+
   })
 
