@@ -9,6 +9,12 @@ block content
         input(type="text" ,name="name" id="name") 
 
         input(type="submit", value="se connecter au tchat")
+    h2 message
+    form(id="form-message")
+        label(for="message") Message
+        input(type="text" ,name="message" id="message") 
+
+        input(type="submit", value="Envoyer")
 
 block js
     script(src="/dist/socket.io.js")
