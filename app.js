@@ -24,7 +24,7 @@ let tchat = require ('./util/socket').tchat(socketIO);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-app.use(logger('dev'));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -33,6 +33,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/dist',
     express.static(path.join(__dirname, 'node_modules/socket.io-client/dist')));
+    
+app.use(logger('dev'));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

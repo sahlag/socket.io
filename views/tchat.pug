@@ -3,6 +3,13 @@ extend layout
 block content
     h1 bienvenu sur le tchat
 
+    h2 connextion
+    form(id="form-connection")
+        label(for="name") Nom d'utilisateur
+        input(type="text" ,name="name" id="name") 
+
+        input(type="submit", value="se connecter au tchat")
+
 block js
     script(src="/dist/socket.io.js")
     script(src="/javascripts/tchat-client.js")
