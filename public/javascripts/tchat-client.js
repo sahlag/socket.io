@@ -5,7 +5,7 @@ let socket = io();
 let formConnection = document.getElementById('form-connection');
 let formMessage = document.getElementById('form-message');
 let inputName = document.getElementById('name');
-let inputMessage = document.getElementById('name');
+let inputMessage = document.getElementById('message');
 
 // Gestion de l'authentification.
 formConnection.addEventListener('submit', (event)=>{
@@ -25,5 +25,10 @@ formMessage.addEventListener('submit', (event)=>{
   
  // Emession de l'événement vers le serveur
     socket.emit('newMessage', message);
+  })
+
+  socket.on('new-message',(username, message)=>{
+      console.log(`Réception d'un message`);
+      console.log(`${ username } : ${ message }`);
   })
 
