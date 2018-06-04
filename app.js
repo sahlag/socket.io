@@ -1,14 +1,24 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+let createError = require('http-errors');
+let express = require('express');
+let path = require('path');
+let cookieParser = require('cookie-parser');
+let logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var tchatRouter = require('./routes/tchat');
+let indexRouter = require('./routes/index');
+let usersRouter = require('./routes/users');
+let tchatRouter = require('./routes/tchat');
 
-var app = express();
+// socket.io : require
+
+let socketIO = require('socket.io')();
+
+// Création de l'application express
+let app = express();
+
+// on attache notre variable "socketIo à "app" pour l'utiliser dans "/bin/www"
+app.socketIO = socketIO;
+// on initialise le tchat
+let tchat = require ('./util/socket').tchat(socketIO);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
