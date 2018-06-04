@@ -35,6 +35,7 @@ formMessage.addEventListener('submit', (event)=>{
   
  // Emession de l'événement vers le serveur
     socket.emit('newMessage', message);
+    inputMessage.value =' ';
 
   });
 
