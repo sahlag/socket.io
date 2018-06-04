@@ -18,7 +18,11 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Rendre au navigateur les fichiers statiques: css/js/img/fonts...
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/dist',
+    express.static(path.join(__dirname, 'node_modules/socket.io-client/dist')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
